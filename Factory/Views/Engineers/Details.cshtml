@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+
+<h4>Engineer Details:</h4>
+<br>
+
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<h4>@Html.DisplayNameFor(model => model.YearStarted): @Html.DisplayFor(model => model.YearStarted)</h4>
+<br>
+
+<h2>Machines Engineer is licensed to work on:</h2>
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>There are no machines this Engineer can work on.</p>
+}
+
+<ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@Html.ActionLink(join.Machine.Name, "Details", "Machines", new { id = join.Machine.MachineId})</li>
+  }
+</ul>
