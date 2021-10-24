@@ -46,8 +46,11 @@ The relationship between the Engineeers and Machines is a many-to-many relations
 * Open the newly cloned project directory in code editor of choice.
 
 * Create you own database by:
+
 1. Download dotnet entityframework to device.
+
 2. To download, in command line on root directory paste `dotnet tool install --global dotnet-ef --version 5.0.10`
+
 3. To recreate the database enter `dotnet ef database update` in command line
 
 * Cd into the `Factory` directory and create a file by entering `touch appsettings.json` in command line
