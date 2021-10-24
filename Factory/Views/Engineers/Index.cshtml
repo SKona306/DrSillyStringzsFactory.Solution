@@ -5,7 +5,7 @@
 @using Factory.Models
 @model List<Factory.Models.Engineer>;
 
-<h1>Your Engineers:</h1>
+<h1>Engineers:</h1>
 
 @if(@Model.Count == 0)
 {
@@ -18,3 +18,5 @@
   <li>@Html.ActionLink($"{engineer.Name}", "Details", new {id = engineer.EngineerId})</li>
 }
 <button>@Html.ActionLink("Add a new engineer", "Create")</button>
+<button>@Html.ActionLink("Home", "Index", "Home")</button>
+<button>@Html.ActionLink("Machines", "Index", "Machines")</button>
