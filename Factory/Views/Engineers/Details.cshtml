@@ -4,22 +4,34 @@
 
 @model Factory.Models.Engineer
 
-<h4>Engineer Details:</h4>
+<h2>Engineer Details:</h2>
 <br>
 
-<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+<h4>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h4>
 <h4>@Html.DisplayNameFor(model => model.YearStarted): @Html.DisplayFor(model => model.YearStarted)</h4>
 <br>
 
-<h2>Machines Engineer is licensed to work on:</h2>
+<h4>Machines Engineer is licensed to work on:</h4>
 @if(@Model.JoinEntities.Count == 0)
 {
   <p>There are no machines this Engineer can work on.</p>
+  <br>
+  <button>@Html.ActionLink("Edit Engineer", "Edit")</button>
+  <button>@Html.ActionLink("Add a Machine", "AddMachine")</button>
+  <button>@Html.ActionLink("Delete Engineer", "Delete")</button>
 }
-
-<ul>
-  @foreach(var join in Model.JoinEntities)
-  {
-    <li>@Html.ActionLink(join.Machine.Name, "Details", "Machines", new { id = join.Machine.MachineId})</li>
-  }
-</ul>
+else
+{
+  <ul>
+    @foreach(var join in Model.JoinEntities)
+    {
+      <li>@Html.ActionLink(join.Machine.Name, "Details", "Machines", new { id = join.Machine.MachineId})</li>
+      @using(Html.BeginForm("DeleteMachine", "Engineers" ))
+      {
+        @Html.Hidden("joinId", @join.EngineerMachineId)
+        <input type="submit" value="remove Machine"/>
+      }
+    }
+  </ul>
+<button>@Html.ActionLink("Edit Engineer", "Edit")</button>
+}
